@@ -114,3 +114,12 @@ bool SystemCacheMemory()
 	system("free -m -h");
 	return true;
 }
+bool ClearOutSwap()
+{
+	printf("\nStatus before clearing:\n");
+	system("free -m -h");
+	system("sudo swapoff -a && sudo swapon -a");
+	printf("\nStatus after clearing:\n");
+	system("free -m -h");
+	return true;
+}
