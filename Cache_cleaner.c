@@ -123,3 +123,14 @@ bool ClearOutSwap()
 	system("free -m -h");
 	return true;
 }
+bool DNSCacheMemory()
+{
+	printf("\nStatus before clearing:\n");
+	system("free -m -h");
+	system("sudo systemd-resolve --flush-caches");
+	printf("\nStatus after clearing:\n");
+	system("free -m -h");
+	printf("\n");
+	system("sudo systemd -statistics");
+	return true;
+}
