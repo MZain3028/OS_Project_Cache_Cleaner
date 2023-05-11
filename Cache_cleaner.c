@@ -105,3 +105,12 @@ int main()
 
 	return 0;
 }
+bool SystemCacheMemory()
+{
+	printf("\n\nStatus before clearing:\n");
+	system("free -m -h");
+	system("sudo echo 1 > /proc/sys/vm/drop_caches");
+	printf("\n\nStatus after clearing:\n");
+	system("free -m -h");
+	return true;
+}
