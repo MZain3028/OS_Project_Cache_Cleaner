@@ -127,10 +127,59 @@ bool DNSCacheMemory()
 {
 	printf("\nStatus before clearing:\n");
 	system("free -m -h");
-	system("sudo systemd-resolve --flush-caches");
+	system("sudo resolvectl flush-caches");
 	printf("\nStatus after clearing:\n");
 	system("free -m -h");
 	printf("\n");
-	system("sudo systemd -statistics");
+	system("sudo resolvectl statistics");
 	return true;
+}
+
+bool TemporaryFile()
+{
+	system("ls /var/tmp");
+	printf("\n");
+	system("sudo find /var/tmp/* -type d -delete");
+	printf("\n");
+	system("ls /var/tmp");
+	return true;
+}
+
+bool RAMCacheMemory()
+{
+	system("free -h");
+	printf("\n");
+	system("sudo echo 1 > /proc/sys/vm/drop_caches");
+	system("sudo echo 2 > /proc/sys/vm/drop_caches");
+	system("sudo echo 3 > /proc/sys/vm/drop_caches");
+	printf("\n");
+	system("free -h");
+	return true;
+}
+
+bool ARPCacheMemory()
+{
+
+	system("sudo ip -s -s neigh flush all");
+	return true;
+}
+
+
+bool OtherCache()
+{
+	system("sudo apt install bleachbit");
+	system("sudo bleachbit --preview system.tmp");
+	system("sudo bleachbit --clean cleaner-name.name");
+	return true;
+}
+
+bool DoAll()
+{
+	SystemCacheMemory();
+	ClearOutSwap();
+	DNSCscheMemory();
+	TemporaryFile();
+	RAMCacheMemory();
+	ARPCacheMemory();
+	OtherCache();
 }
