@@ -40,7 +40,7 @@ This option clears out the system cache memory by dropping cached data from memo
 This option clears out the swap memory by turning swap off and then on again. Before and after running this option, the program displays the status of the swap memory using the "free -m -h" command.
 
 <h2>3.DNS Cache Memory</h2>
-This option clears out the DNS cache memory by flushing the system's DNS cache using the "systemd-resolve --flush-caches" command. Before and after running this option, the program displays the status of the system cache memory using the "free -m -h" command and the statistics of the DNS cache memory using the "systemd-resolve --statistics" command.
+This option clears out the DNS cache memory by flushing the system's DNS cache using the "sudo resolvectl flush-caches" command. Before and after running this option, the program displays the status of the system cache memory using the "free -m -h" command and the statistics of the DNS cache memory using the "sudo resolvectl statistics" command.
 <h2>4.Temporary Files</h2>
 This option clears out temporary files by listing the files in the "/var/tmp" directory, deleting all directories in that directory using the "find /var/tmp/* -type d -delete" command, and then listing the files in the directory again.
 
@@ -56,6 +56,14 @@ This option installs the "bleachbit" package using the "sudo apt install bleachb
 This option runs all of the above options one by one. The program waits for 5 seconds after each option before proceeding to the next.
 
 After executing the command to clear the cache type, the function displays the status of the cache type before and after clearing using the system command free -m -h for memory-based caches and ls for file-based caches.
+
+<h2>Refrences</h2>
+<li>(https://www.geeksforgeeks.org/how-to-clear-ram-memory-cache-buffer-and-swap-space-on-linux/)</li>
+<li>(https://www.tecmint.com/clear-ram-memory-cache-buffer-and-swap-space-on-linux/)</li>
+<li>https://community.progress.com/s/article/how-to-clear-ram-memory-cache-buffer-and-swap-space-on-linux</li>
+<li>https://geekflare.com/check-and-clear-the-arp-cache/</li>
+<li>(https://www.bleachbit.org/)</li>
+<li>https://tecadmin.net/flush-dns-cache-ubuntu/</li>
 
 ## Conclusion
   The cache cleaner program provides a convenient way for Linux users to clean various types of caches on their system. It uses system commands to clear the caches and presents a menu-based interface to the user. By running the program, users can quickly free up valuable system resources and improve the performance of their system.
