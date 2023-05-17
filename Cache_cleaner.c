@@ -105,36 +105,39 @@ int main()
 
 	return 0;
 }
+//function for clearing systemcachememory
 bool SystemCacheMemory()
 {
 	printf("\n\nStatus before clearing:\n");
-	system("free -m -h");
-	system("sudo echo 1 > /proc/sys/vm/drop_caches");
+	system("free -m -h"); //shows memory status
+	system("sudo echo 1 > /proc/sys/vm/drop_caches"); //system call for clearing caches
 	printf("\n\nStatus after clearing:\n");
 	system("free -m -h");
 	return true;
 }
+//function for clearing swap
 bool ClearOutSwap()
 {
 	printf("\nStatus before clearing:\n");
 	system("free -m -h");
-	system("sudo swapoff -a && sudo swapon -a");
+	system("sudo swapoff -a && sudo swapon -a"); //turns off swap and turns it on for clearing cache
 	printf("\nStatus after clearing:\n");
 	system("free -m -h");
 	return true;
 }
+//function for clearing dns cache
 bool DNSCacheMemory()
 {
 	printf("\nStatus before clearing:\n");
 	system("free -m -h");
-	system("sudo resolvectl flush-caches");
+	system("sudo resolvectl flush-caches"); //clears cache
 	printf("\nStatus after clearing:\n");
 	system("free -m -h");
 	printf("\n");
 	system("sudo resolvectl statistics");
 	return true;
 }
-
+//function for clearing temporaryfiles
 bool TemporaryFile()
 {
 	system("ls /var/tmp");
@@ -144,7 +147,7 @@ bool TemporaryFile()
 	system("ls /var/tmp");
 	return true;
 }
-
+//function for clearing ramcachememory
 bool RAMCacheMemory()
 {
 	system("free -h");
@@ -156,23 +159,23 @@ bool RAMCacheMemory()
 	system("free -h");
 	return true;
 }
-
+//function for clearing arp cache
 bool ARPCacheMemory()
 {
 
-	system("sudo ip -s -s neigh flush all");
+	system("sudo ip -s -s neigh flush all"); //clears arpcache
 	return true;
 }
 
-
+//function for clearing misc cache using bleachbit
 bool OtherCache()
 {
-	system("sudo apt install bleachbit");
+	system("sudo apt install bleachbit"); //install bleachbit
 	system("sudo bleachbit --preview system.tmp");
-	system("sudo bleachbit --clean cleaner-name.name");
+	system("sudo bleachbit --clean cleaner-name.name"); //cleans system cache
 	return true;
 }
-
+//call all functions at once
 bool DoAll()
 {
 	SystemCacheMemory();
